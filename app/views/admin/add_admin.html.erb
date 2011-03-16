@@ -1,0 +1,28 @@
+<fieldset>
+<legend>Add Administrator</legend>
+
+<% form_for :administrator, @admin do |f| -%>
+    <%= error_messages_for 'admin' %>
+
+	<p><label for="login">Login:</label><br/>
+	<%= f.text_field :login %> <br/>
+	<cite>Ex., aedenfield</cite>
+
+	<p><label for="email">Email:</label><br/>
+	<%= f.text_field :email %><br/>
+	<cite>Ex., amy@zepho.com. A valid email is required for an active account.</cite>
+
+	<p><label for="password">Password:</label><br/>
+	<%= f.password_field :password %><br/>
+	<cite> Enter the password that is between 4 and 40 characters in length.</cite>
+
+	<p><label for="password_confirmation">Confirm Password:</label><br/>
+	<%= f.password_field :password_confirmation %><br/>
+	<cite>Enter the same password as above.</cite>
+
+  <p><%= f.submit 'Add Admin' %></p>
+<% end -%>
+
+<%= button_to :cancel, :action => :index %>
+
+</fieldset>

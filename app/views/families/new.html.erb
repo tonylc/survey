@@ -1,0 +1,52 @@
+<fieldset>
+<legend>Add Family Reporter</legend>
+
+<% form_tag do -%>
+
+    <div class="user-field">
+      <label for="last_name">Last Name:</label><br/>
+      <%= text_field_tag :last_name, @last_name %>
+    </div>
+
+    <p>
+    <label for="first_name">First Name:</label><br/>
+    <%= text_field_tag :first_name, @first_name %> <br/>
+
+	<p><label for="email">Email:</label><br/>
+	<%= text_field_tag :email, @email %><br/>
+	<cite>Ex., amy@zepho.com. A valid email is required for an active account.</cite>
+
+    <p><label for="business_name">Business Name:</label><br/>
+    <%= text_field_tag :business_name, @business_name %> <br/>
+
+    <p><label for="mailing_address">Mailing Address:</label><br/>
+    <%= text_field_tag :mailing_address, @mailing_address, :size => 60, :maxlength => 60 %> <br/>
+
+    <div class="user-field">
+      <label for="city">City:</label><br/>
+      <%= text_field_tag :city, @city %> <br/>
+    </div>
+
+    <div class="user-field">
+      <label for="state">State:</label><br/>
+      <%= text_field_tag :state, @state, :size => 2, :maxlength => 2 %> <br/>
+    </div>
+
+    <p><label for="zip_code">Zip Code:</label><br/>
+    <%= text_field_tag :zip_code, @zip_code, :size => 5, :maxlength => 5 %> <br/>
+
+    <p><label for="phone_number">Phone Number:</label><br/>
+    <%= text_field_tag :phone_number, @phone_number %> <br/>
+
+    <p><label for="num_users">Number of Users:</label><br/>
+    <%= text_field_tag :num_users, @num_users, :size => 3, :maxlength => 3 %> <br/>
+
+    <p><label for="num_generations">Number of Generations:</label><br/>
+    <%= text_field_tag :num_generations, @num_generations %> <br/>
+
+  <p><%= submit_tag 'Add New Family' %></p>
+<% end -%>
+
+</fieldset>
+
+<%= link_to 'Back', families_path %>

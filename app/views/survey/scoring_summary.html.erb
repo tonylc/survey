@@ -1,0 +1,76 @@
+
+	<%= javascript_include_tag "jquery-1.3.2.min" %>
+	<%= javascript_include_tag "Highcharts-1.1.0/js/highcharts.src" %>
+	<%= javascript_include_tag "Highcharts-1.1.0/js/excanvas.compiled" %>
+<h3>Explaining Your Individual and Family Scores</h3>
+<p>The pages that follow summarize your responses to the questions in the Index.</p>
+<p>Each of the major practice areas within each section will have a score ranging from 0-4, representing the degree to which you have indicated that your family engages in that practice area, currently, and your perception of its importance to the family in the future.
+(Remember, each of the major practice areas is composed of three practices that you responded to in the Index.)
+On the last line of each Dimension there is also an average for all the practice areas in that Dimension.</p>
+<p>If several family members have completed the Index, you will see a second column that presents the average scores for all the family responders, so you can compare your responses with the average for your family.</p>
+
+
+<% if @num_family_members > 1 %>
+<p><label for="show_family">Show average results for <%= @num_family_members %> family members</label><%= check_box_tag 'show_family', 0, false, {:onclick => "showFamilyDiv()"} %></p>
+<% end %>
+
+<div id="survey-results-part-1">
+  <table style="width: 100%; margin: 10px 0;" border="1">
+	<%= render :partial => "scoring_summary_table_header", :locals => {:survey_section => APP_CONFIG['p1']['title'] } %>
+    <%= render :partial => "survey_results_section", :locals => {:survey_section => APP_CONFIG['p1']['title'],
+																 :attributes => [:direction, :connection, :communication, :community],
+                                                                    :answer => @survey_answer,
+                                                                    :family => @family_answer} %>
+    <tr class="score-averages">
+      <td align="right">Averages for <%= APP_CONFIG['p1']['title'] %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_current_direction_connection_communication_community / 12) %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_future_direction_connection_communication_community / 12) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_current_direction_connection_communication_community / 12) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_future_direction_connection_communication_community / 12) %></td>
+    </tr>
+  </table>
+  <table style="width:100%; margin: 10px 0;" border="1">
+	<%= render :partial => "scoring_summary_table_header", :locals => {:survey_section => APP_CONFIG['p2']['title'] } %>
+	<%= render :partial => "survey_results_section", :locals => {:survey_section => APP_CONFIG['p2']['title'],
+																 :attributes => [:achieve_purpose, :shared_agreements, :exit_options],
+                                                                    :answer => @survey_answer,
+                                                                    :family => @family_answer} %>
+    <tr class="score-averages">
+      <td align="right">Averages for <%= APP_CONFIG['p2']['title'] %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_current_achieve_purpose_shared_agreements_exit_options / 10) %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_future_achieve_purpose_shared_agreements_exit_options / 10) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_current_achieve_purpose_shared_agreements_exit_options / 10) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_future_achieve_purpose_shared_agreements_exit_options / 10) %></td>
+    </tr>
+  </table>
+  <table style="width:100%; margin: 10px 0;" border="1">
+	<%= render :partial => "scoring_summary_table_header", :locals => {:survey_section => APP_CONFIG['p3']['title'] } %>	
+    <%= render :partial => "survey_results_section", :locals => {:survey_section => APP_CONFIG['p3']['title'],
+																 :attributes => [:financial_accountability, :financial_management, :future_generations],
+                                                                    :answer => @survey_answer,
+                                                                    :family => @family_answer} %>
+    <tr class="score-averages">
+      <td align="right">Averages for <%= APP_CONFIG['p3']['title'] %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_current_financial_accountability_financial_management_future_generations / 9) %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_future_financial_accountability_financial_management_future_generations / 9) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_current_financial_accountability_financial_management_future_generations / 9) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_future_financial_accountability_financial_management_future_generations / 9) %></td>
+    </tr>
+  </table>
+  <table style="width:100%; margin: 10px 0;" border="1">
+	<%= render :partial => "scoring_summary_table_header", :locals => {:survey_section => APP_CONFIG['p4']['title'] } %>
+    <%= render :partial => "survey_results_section", :locals => {:survey_section => APP_CONFIG['p4']['title'],
+															     :attributes => [:leadership_transition, :next_gen_leader, :financial_stewardship, :personal_fulfillment],
+                                                                    :answer => @survey_answer,
+                                                                    :family => @family_answer} %>
+    <tr class="score-averages">
+      <td align="right">Averages for <%= APP_CONFIG['p4']['title'] %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_current_leadership_transition_next_gen_leader_financial_stewardship_personal_fulfillment / 12) %></td>
+      <td><%= results_part_2_view(@survey_answer.sum_future_leadership_transition_next_gen_leader_financial_stewardship_personal_fulfillment / 12) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_current_leadership_transition_next_gen_leader_financial_stewardship_personal_fulfillment / 12) %></td>
+      <td class="family-results"><%= results_part_2_view(@family_answer.sum_future_leadership_transition_next_gen_leader_financial_stewardship_personal_fulfillment / 12) %></td>
+    </tr>
+  </table>
+</div>
+
+<%= link_to "Continue", :action => :strengths_and_areas_of_development %>

@@ -1,0 +1,7 @@
+<h3>Areas of Importance for Further Development</h3>
+<p>Now we list the practice areas arranged according to the degree of importance that you perceive in that practice area for the future. One column indicates your own perceptions. If several members of your family completed the Index, the second column indicates the differences from highest to lower according to the average scores in your family.</p>
+
+<div style="height:100%;min-width:800px;width:100%">
+<%= render :partial => "areas_for_development", :locals => {:attributes => @attributes, :family_attributes => @family_attributes, :survey_answer => @survey_answer, :family_answer => @family_answer, :should_show_family => @should_show_family} %>
+</div>
+<%= link_to "Continue to Response", :action => :response %>

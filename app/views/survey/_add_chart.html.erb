@@ -1,0 +1,42 @@
+<%
+	dimension_number ||= 1
+	chart_name ||= "charts_#{dimension_number}"
+	chart_title ||= String.new("#{APP_CONFIG["p#{dimension_number}"]['title']} Averages")
+	family_answers ||= []
+	show_table ||= true
+%>
+<h3>Dimensional View : Bird’s-eye View of Family Member Perceptions</h3>
+<p>Whereas the ratings above are describing how each family member has rated each of the individual practice areas that make up one of the four dimensions, the chart below depicts the average for the dimension, showing both the Current Assessment and Future Importance. This is particularly relevant because it allows you to see your own views in relation to the views of other family members. You can begin to see where your observations and thinking is aligned with others and where it is not.  Remember that each of the four dimensions have a number of practice areas:</p>
+
+<h4><%= APP_CONFIG["p#{dimension_number}"]["title"] %>: Practice areas</h4>
+<ul>
+<% attributes.each_with_index do |attribute_name, index| %>
+	<li><%= "(#{index + 1}) #{APP_CONFIG[attribute_name.to_s]}" %></li>
+<% end %>
+</ul>
+
+<div class="survey_dimension_scores">
+	<div class="y-axis-label">Average<br/>Ratings</div>
+	<div id="charts_<%= dimension_number %>"></div
+</div>
+<%= image_tag(generate_google_graph_url(family_answers, 1))%>
+
+<div class="survey_dimension_scores">
+<table border="1">
+	<tr>
+	  <td class="survey-part-title" colspan="3"><%= dimension_title %></td>
+	</tr>
+	<tr>
+	  <td class="survey-header"></td>
+	  <td class="survey-header">Current Assessment</td>
+	  <td class="survey-header">Future Importance</td>
+	</tr>
+	<% family_answers.each_with_index do |answer, index| %>
+	<tr>
+		<td><%= family_member_label(index) %></td>
+		<td><%= answer.method("current_dimension_#{dimension_number}_average").call.round_with_precision(2) %></td>
+		<td><%= answer.method("future_dimension_#{dimension_number}_average").call.round_with_precision(2) %></td>
+	</tr>
+	<% end %>
+</table>
+</div>

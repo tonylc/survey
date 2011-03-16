@@ -1,0 +1,67 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag "jquery-ui-1.8.4.custom.css" %>
+<% end %>
+
+<div id="results">
+<h3>Explaining Your Individual and Family Scores</h3>
+<p>We now present an overall summary of your individual scores, and the average scores of your whole family.</p>
+<h3>How the Report is Organized</h3>
+<p>You responded to questions about a large number of family practices. We have organized these practices into four major Dimensions of Family Enterprise Sustainability: </p>
+<table id="dimension_reference" border="1">
+	<tr>
+		<td>Dimension I</td>
+		<td>Family Legacy and Connection</td>
+	</tr>
+	<tr>
+		<td>Dimension II</td>
+		<td>Governance Structures and Processes</td>
+	</tr>
+	<tr>
+		<td>Dimension III</td>
+		<td>Financial Accountability and Management</td>
+	</tr>
+	<tr>
+		<td>Dimension IV</td>
+		<td>Leadership and Human Capital Development</td>
+	</tr>
+</table>
+			
+
+<p>Each of the dimensions is composed of practices areas, which in turn are each composed of three practices you responded to in the INDEX. Each of the major practice areas within each of the dimensions will have a score ranging from 0-4, representing the degree to which you have indicated that your family engages in that practice area, currently, and your perception of its importance to the family in the future.</p>
+<p>(Note: If you would like a complete list of the practices that make up each of the major practice areas within the four dimensions of the Index click <a href="practices">here</a>.)</p>
+<p>If several family members have completed the Index, you will see additional rows that present the average scores for all the family responders, so you can compare your responses with those of the rest of your family who participated.</p>
+<p>The following table shows your responses and those of your family for each of the practice areas within the Family Legacy and Connection dimension.</p>
+
+<%= render :partial => "dimension_score",
+					 :locals => { :dimension_number => 1,
+												:family_answers => @family_answers,
+												:attributes => [:direction, :connection, :communication, :community] }%>
+
+<%= render :partial => "dimension_score",
+					 :locals => { :dimension_number => 2,
+												:family_answers => @family_answers,
+												:attributes => [:achieve_purpose, :shared_agreements, :exit_options] }%>
+
+<%= render :partial => "dimension_score",
+					 :locals => { :dimension_number => 3,
+												:family_answers => @family_answers,
+												:attributes => [:financial_accountability, :financial_management, :future_generations] }%>
+																								
+<%= render :partial => "dimension_score",
+					 :locals => { :dimension_number => 4,
+												:family_answers => @family_answers,
+												:attributes => [:leadership_transition, :next_gen_leader, :financial_stewardship, :personal_fulfillment] }%>
+</div>
+<p><%= link_to "continue", :action => :strengths_and_improvement %></p>
+
+<% content_for :script do %>
+	<%= javascript_include_tag ["jquery-1.4.2.min.js", "jquery-ui-1.8.4.custom.min.js"] %>
+<script>
+	jQuery(document).ready(function(){
+		$('.ui-accordion-header').click(function() {
+			$(this).next().toggle('slow');
+			return false;
+		}).next().hide();
+	});
+</script>
+<% end %>

@@ -1,0 +1,8 @@
+<h3>Family Strengths and Areas for Development</h3>
+
+<p>The list below indicates the family practices, arranged in order by your own perceptions and your family’s perceptions together; from the highest to the lowest scores. If several members of your family completed the Index, the second column indicates the practices that are rated highest according to the average scores in your family.</p>
+
+<div style="height:100%;min-width:800px;width:100%">
+<%= render :partial => "areas_for_development", :locals => {:attributes => @attributes, :family_attributes => @family_attributes, :survey_answer => @survey_answer, :family_answer => @family_answer, :should_show_family => @should_show_family} %>
+</div>
+<%= link_to "Continue to Areas of Importance for Further Development", :action => :further_development %>

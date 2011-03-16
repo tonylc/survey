@@ -1,0 +1,33 @@
+<%
+	dimension_number ||= 1
+	dimension_title = "#{convert_dimension_number_to_roman_numeral(dimension_number)}. #{APP_CONFIG["p#{dimension_number}"]['title']}"
+%>
+
+<div class="dimension-table-wrapper ui-accordion ui-widget ui-helper-reset ui-accordion-icons">
+<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><span class="ui-icon ui-icon-triangle-1-e"></span><a href="#"><%= APP_CONFIG["p#{dimension_number}"]["title"] %>: Practice areas</a></h3>
+<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+	<ul>
+	<% attributes.each_with_index do |attribute_name, index| %>
+		<li><%= "(#{index + 1}) #{APP_CONFIG[attribute_name.to_s]}" %></li>
+	<% end %>
+	</ul>
+
+	<%= render :partial => "survey_dimension_scores2", 
+						 :locals => { :dimension_title => String.new(dimension_title), 
+													:family_answers => family_answers, 
+													:attributes => attributes,
+													:score_type => :current} %>
+													
+	<%= render :partial => "survey_dimension_scores2", 
+						 :locals => { :dimension_title => String.new(dimension_title), 
+													:family_answers => family_answers, 
+													:attributes => attributes,
+													:score_type => :future} %>
+
+	<%= render :partial => "add_chart", 
+						 :locals => { :dimension_title => String.new(dimension_title),
+									  :family_answers => family_answers,
+									  :dimension_number => dimension_number,
+									  :attributes => attributes} %>
+</div>
+</div>

@@ -1,0 +1,33 @@
+<h1>Manage Assessment Inventory</h1>
+Max pages is <%= APP_CONFIG["number_of_pages"] %>
+<table border="1">
+  <tr>
+    <td class="survey-header">Question</td>
+    <td class="survey-header">Page Number on Survey</td>
+    <td class="survey-header">Click to Edit</td>
+  </tr>
+<tr>
+	<td class="survey-header" colspan="3"><%= APP_CONFIG["p1"]["title"] %></td>
+  </tr>
+<% @survey_questions[0..11].each do |survey_question| %>
+  <%= render :partial => "survey_question_row", :locals => {:survey_question => survey_question}%>
+<% end %>
+  <tr>
+	<td class="survey-header" colspan="3"><%= APP_CONFIG["p2"]["title"] %></td>
+  </tr>
+<% @survey_questions[12..21].each do |survey_question| %>
+  <%= render :partial => "survey_question_row", :locals => {:survey_question => survey_question}%>
+<% end %>
+  <tr>
+	<td class="survey-header" colspan="3"><%= APP_CONFIG["p3"]["title"] %></td>
+  </tr>
+<% @survey_questions[22..30].each do |survey_question| %>
+  <%= render :partial => "survey_question_row", :locals => {:survey_question => survey_question}%>
+<% end %>
+  <tr>
+	<td class="survey-header" colspan="3"><%= APP_CONFIG["p4"]["title"] %></td>
+  </tr>
+<% @survey_questions[31..42].each do |survey_question| %>
+  <%= render :partial => "survey_question_row", :locals => {:survey_question => survey_question}%>
+<% end %>
+</table>

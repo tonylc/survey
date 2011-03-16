@@ -1,0 +1,15 @@
+<h1>View Families (<%= @families.size %>)</h1>
+
+<table>
+<% for family in @families %>
+  <tr>
+    <td><%= family.business_name %></td>
+    <td><%= link_to 'Show', family %></td>
+    <td><%= link_to 'Edit', edit_family_path(family) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New family', new_family_path %>

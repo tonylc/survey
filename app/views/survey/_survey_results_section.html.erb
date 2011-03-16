@@ -1,0 +1,109 @@
+<%
+	current_results_scoring_array = []
+	future_results_scoring_array = []
+	current_family_results_scoring_array = []
+	future_family_results_scoring_array = []
+	attribute_section_name = []
+%>
+<% attributes.each do |attribute| %>
+<%
+  if attribute == :shared_agreements
+   	num_questions = 4
+  else
+	num_questions = 3
+  end
+%>
+  <tr>
+    <td><%= APP_CONFIG["#{attribute.to_s}"] %></td>
+    <% current_method = "#{attribute}_current_score" %>
+    <% future_method = "#{attribute}_future_score" %>
+	<% current_score = results_part_2_view(answer.method(current_method).call / num_questions) %>
+	<% future_score = results_part_2_view(answer.method(future_method).call / num_questions) %>
+    <td><%= current_score %></td>
+    <td><%= future_score %></td>
+
+	<% attribute_section_name << APP_CONFIG["#{attribute.to_s}"] %>
+	<% current_results_scoring_array << current_score %>
+	<% future_results_scoring_array << future_score %>
+	
+    <% if family %>
+	<% family_current_score = results_part_2_view(family.method(current_method).call / num_questions) %>
+	<% family_future_score = results_part_2_view(family.method(future_method).call / num_questions) %>
+    <td class="family-results"><%= family_current_score %></td>
+    <td class="family-results"><%= family_future_score %></td>
+
+	<% current_family_results_scoring_array << family_current_score %>
+	<% future_family_results_scoring_array << family_future_score %>
+    <% end %>
+  </tr>
+<% end %>
+
+<script>
+	var attribute_section_name_<%= attribute_section_name.object_id.abs %> = <%= generate_js_attribute_section_names(attribute_section_name) %>;
+$(document).ready(function() {
+	var chart = new Highcharts.Chart({
+		chart: {
+			height: '400',
+			width: '1000',
+			renderTo: 'charts-<%= attributes.object_id.abs %>',
+			defaultSeriesType: 'scatter'
+		},
+		title: {
+			text: '<%= survey_section %>'
+		},
+		xAxis: {
+			title: {
+				text: 'Practice Areas'
+			},
+			categories: [<%= generate_x_axis(current_results_scoring_array) %>]
+		},
+		yAxis: {
+			title: {
+				text: 'Index Score (out of a possible 5)'
+			},
+			categories: ['0', '1', '2', '3', '4', '5'],
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.series.name +'</b><br/>Practice '+ this.x +' - ' + attribute_section_name_<%= attribute_section_name.object_id.abs%>[this.x] + '<br>'+ this.y;
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			style: {
+			left: '50px',
+			bottom: 'auto'
+		},
+		backgroundColor: '#FFFFFF',
+			borderWidth: 1
+		},
+		plotOptions: {
+			scatter: {
+				marker: {
+					radius: 7
+				}
+			}
+		},
+		series: [{
+			name: 'Your Current Score',
+			color: 'rgba(119, 152, 191, .7)',
+			data: <%= generate_graph_score(current_results_scoring_array) %>
+		}, {
+			name: 'Your Future Score',
+			color: 'rgba(16, 78, 139, .5)',
+			data: <%= generate_graph_score(future_results_scoring_array) %>
+		}, {
+			name: 'Family Current Score Average',
+			color: 'rgba(223, 83, 83, .5)',
+			data: <%= generate_graph_score(current_family_results_scoring_array) %>
+		}, {
+			name: 'Family Future Score Average',
+			color: 'rgba(139, 35, 35, .5)',
+			data: <%= generate_graph_score(future_family_results_scoring_array) %>
+		}]
+	}); 
+});
+</script>
+
+<div id="charts-<%= attributes.object_id.abs %>">
+</div>

@@ -1,0 +1,18 @@
+<% if @survey.all_pages_complete?  %>
+  <h2>You have already taken the survey</h2>
+
+  <%= link_to "View Your Results", :controller => :survey, :action => :results%>
+<% else %>
+  <h2>Welcome to the Enterprising Family Sustainability Index</h2>
+  <p>This index asks you as an individual family member to assess how much your family utilizes practices that can help build family connections, communicate, make decisions, and develop family structures, agreements and leadership over generations.</p>
+  <p>On the pages that follow, you will be asked to rate your family’s involvement in a series of practices. For each practice, you are asked to mark the degree to which you view your family as using it in its <strong>CURRENT</strong> practice and how important you believe that practice can be for your family in the <strong>FUTURE</strong>.</p>
+	<p>The Index asks about your perceptions of the family enterprise. We realize that other family members may see your family differently, and therefore, your perceptions may differ from others.</p>
+  <h3>Completing the Index</h3>
+  <p>In the <strong>CURRENT</strong> column, click on a number button to indicate the degree to which you see your family using that practice now, using a scale of 0-4, in which 0 indicates “our family does not do this at all” and 4 indicates “our family does this as a regular practice.” You can also click on the <strong>DK</strong> button to indicate that you don’t know if this is done by your family.</p>
+  <p>In the <strong>FUTURE</strong> column, click on a number button to indicate how important you consider that practice will be for your family in the near future (next five years), using a scale of 0-4, in which 0 indicates “this would not be important to our family at all” and 4 indicates “this would be very important for our family in the future”.  You can also click on the <strong>DK</strong> button to indicate that you don’t know if this is important to your family in the future.</p>
+  <p>You must click on a response in both the <strong>CURRENT</strong> and <strong>FUTURE</strong> columns for each practice. When you have completed your responses, click the Continue button to move to the next screen. You will not be able to move to the next screen until you have responded to both columns for each practice. If you are unsure of any response, you can click on the <strong>DK</strong> button.</p>
+  <p>Now please move to the next page and start completing the Index.</p>
+
+
+  <%= link_to "Start Survey", :action => :page, :survey_page_num => 1 %>
+<% end %>

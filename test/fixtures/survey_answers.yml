@@ -1,0 +1,96 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+default:
+  id: 1
+  survey_id: 1
+  answer_111_a: 1
+  answer_111_b: 1
+  answer_112_a: 2
+  answer_112_b: 1
+  answer_113_a: 3
+  answer_113_b: 1
+  answer_121_a: 1
+  answer_121_b: 4
+  answer_122_a: 1
+  answer_122_b: 4
+  answer_123_a: 5
+  answer_123_b: 1
+  answer_131_a: 1
+  answer_131_b: 1
+  answer_132_a: 3
+  answer_132_b: 1
+  answer_133_a: 2
+  answer_133_b: 1
+  answer_141_a: 1
+  answer_141_b: 3
+  answer_142_a: 1
+  answer_142_b: 1
+  answer_143_a: 1
+  answer_143_b: 4
+  answer_211_a: 1
+  answer_211_b: 3
+  answer_212_a: 3
+  answer_212_b: 1
+  answer_213_a: 2
+  answer_213_b: 1
+  answer_221_a: 5
+  answer_221_b: 4
+  answer_222_a: 1
+  answer_222_b: 3
+  answer_223_a: 1
+  answer_223_b: 1
+  answer_231_a: 2
+  answer_231_b: 1
+  answer_232_a: 4
+  answer_232_b: 1
+  answer_233_a: 3
+  answer_233_b: 2
+  answer_311_a: 1
+  answer_311_b: 1
+  answer_312_a: 4
+  answer_312_b: 5
+  answer_313_a: 3
+  answer_313_b: 1
+  answer_321_a: 1
+  answer_321_b: 2
+  answer_322_a: 3
+  answer_322_b: 1
+  answer_323_a: 5
+  answer_323_b: 1
+  answer_331_a: 1
+  answer_331_b: 4
+  answer_332_a: 1
+  answer_332_b: 1
+  answer_333_a: 3
+  answer_333_b: 2
+  answer_411_a: 1
+  answer_411_b: 3
+  answer_412_a: 1
+  answer_412_b: 1
+  answer_413_a: 1
+  answer_413_b: 4
+  answer_421_a: 5
+  answer_421_b: 1
+  answer_422_a: 1
+  answer_422_b: 2
+  answer_423_a: 1
+  answer_423_b: 3
+  answer_431_a: 1
+  answer_431_b: 1
+  answer_432_a: 1
+  answer_432_b: 1
+  answer_433_a: 2
+  answer_433_b: 2
+  answer_441_a: 1
+  answer_441_b: 3
+  answer_442_a: 1
+  answer_442_b: 5
+  answer_443_a: 4
+  answer_443_b: 4
+ 

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-US">
+
+<head>
+  <title><%= @page_title || 'Relative Solutions Family Assessment' %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= stylesheet_link_tag 'style', 'scaffold', 'survey' %>
+  <%= yield :head %>
+</head>
+
+  <body bgcolor="">
+  <div id="page-wrapper">
+<!-- ##### Header ##### -->    
+	<div id="header">
+      <div class="superHeader">
+        <h1>Enterprising Family Sustainability Index</h1>
+	  </div>
+	  
+      <div id="top-header" class="header-strip"></div>
+      <div id="header-seperator"></div>
+      <div id="log-out" class="header-strip">
+        <% if logged_in? %>
+  	  	    You are logged in as:
+  			<span><%= current_user.login %></span> (<%= link_to 'Logout', logout_url  %>)
+  		 <% else %>
+  			<span>Welcome Guest</span>
+  		 <% end %>
+      </div>	
+    </div>
+
+    <div id="content">
+      <div id="left-menu" class="column">
+        <% if logged_in?%>
+          <% if current_user.is_admin? %>
+            <ul>
+              <li><%= link_to "Manage Administrators", :controller => :admin, :action => :index %></li>
+              <li><%= link_to "Manage Assessment Inventory", :controller => :survey_questions, :action => :index %></li>
+              <li><%= link_to "Add Family Reporter", :controller => :admin, :action => :new_family if current_user.is_family_reporter? %></li>
+              <li><%= link_to "View Families", :controller => :families, :action => :index %></li>
+              <li><%= link_to "Display Report", :controller => :admin, :action => :display_report %></li>
+			  <li><%= link_to "Survey Mockup", :controller => :admin, :action => :mockup %></li>
+            </ul>
+          <% elsif current_user.active? %>
+            <ul>
+              <% if current_user.is_family_reporter? %>
+              <li><%= link_to "Add Family Member", :controller => :users, :action => :new %></li>
+              <li><%= link_to "View Family", :controller => :families, :action => :show, :id => current_user.family_id %></li>
+              <% end %>
+              <li><%= link_to "My Account", :controller => :users, :action => :view, :id => current_user.id %> </li>
+              <% if current_user.survey_complete? %>
+                <li><%= link_to "View Result", :controller => :survey, :action => :results %></li>
+              <% else %>
+                <li><%= link_to "Start Survey", :controller => :survey, :action => :page, :survey_page_num => 1 %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- ##### Main Copy ##### -->
+      <div id="main-copy" class="column">
+        <% flash.each do |key,value| %>
+          <div id="flash" class="flash_<%= key %>" >
+            <span class="message"><%= value %></span>
+          </div>
+        <% end -%>
+
+        <%= yield :layout %>
+      </div>
+    </div>
+
+    <!-- ##### Footer ##### -->
+    <div id="footer">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody><tr>
+            <td height="18" width="385">© 2009 Relative Solutions, LLC</td>
+            <td width="385" align="right"><a href="http://relative-solutions.com/ourcompany/privacylegal">Legal & Privacy</a><span style="color: rgb(255, 255, 255); font-size: 9px;"> | </span><a href="http://relative-solutions.com/ourcompany/contact">Contact Us</a></td>
+            <td class="footerColor"> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+	<%= javascript_include_tag :defaults, "swfobject" %>
+	<%= yield :script %>
+  </body>
+</html>

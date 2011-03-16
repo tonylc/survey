@@ -1,0 +1,339 @@
+/**********************************
+* TITLE: Gila Screen Stylesheet  * 
+* URI  : gila/gila-screen.css    *
+* MODIF: 2003-Apr-30 19:09 +0800 *
+**********************************/
+
+
+/* ##### Common Styles ##### */
+
+body {
+	color: black;
+	font-family: verdana, helvetica, arial, sans-serif;
+	font-size: 73%;  /* Enables font size scaling in MSIE */
+	margin: 0;
+	padding: 0;
+}
+
+html > body {
+	font-size: 10pt;
+}
+
+acronym, .titleTip {
+	border-bottom: 1px dotted rgb(168,140,83);
+	cursor: help;
+	margin: 0;
+	padding: 0;
+}
+
+.doNotDisplay {
+	display: none !important;
+}
+
+
+.smallCaps {
+	font-size: 117%;
+	font-variant: small-caps;
+}
+
+
+/* ##### Header ##### */
+
+.superHeader {
+	color: #C3C4D2;
+	background-color: white;
+	text-align: left;
+    font-weight: bold;
+	margin: 0;
+	padding: 1ex 5px 5px 0;
+    height: 90px;
+    min-width: 800px;
+}
+
+.superHeader h1 {
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+.superHeader a:hover {
+    color: #5BA532;
+}
+.superHeader a {
+    color: #C3C4D2;
+}
+
+.superHeader span {
+	color: white;
+	background-color: transparent;
+	font-weight: bold;
+}
+
+#top-header {
+    background-color: #7B6F5F; /* rs brown */
+}
+
+.header-strip {    
+    height: 20px;
+}
+
+#header-seperator {
+    background-color: white;
+    height: 3px;
+}
+
+.headerTitle a {
+	color: black;
+	background-color: transparent;
+	text-decoration: none;
+	font-size: 110%;  /* For MSIE */
+	font-weight: bold;
+	font-style: italic;
+}
+
+
+/* ##### Main Copy ##### */
+
+#main-copy {
+    float: left;
+	background-color: white;
+	line-height: 1.5em;
+    margin: 0;
+	/*margin: 0 0 0 13.5em;*/
+	padding: 2em;
+	border-left: 1px solid rgb(216,210,195);
+    min-height: 600px;
+    width: 70%;
+    max-width: 800px;
+}
+
+#main-copy a {
+	color: #7590AE;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+#main-copy a:hover {
+	text-decoration: none;
+}
+
+p {
+	margin: 1em 0 1.5em 0;
+	padding: 0;
+}
+
+dt {
+	font-weight: bold;
+	margin: 0;
+	padding: 0 0 0.5ex 0;
+}
+
+dd {
+	margin: 0 0 1.5em 1.5em;
+	padding: 0;
+}
+
+
+/* ##### Footer ##### */
+
+#footer {
+	color: white;
+	background-color: #5BA532;
+	font-size: 92%;
+	text-align: left;
+	line-height: 1.25em;
+	margin: 0;
+	padding: 0 4mm;
+	clear: both;
+}
+
+#footer div {
+	margin: 0;
+	padding: 0 0 1ex 0;
+}
+
+#footer a {
+	color: white;
+    font-family: Myriad Roman,Arial;
+    font-size: 9px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+}
+
+#footer a:hover {
+	color:#4A4338;
+}
+
+
+/* ##### Header ##### */
+
+.midHeader {
+	color: white;
+	background-color: #7B6F5F;
+	margin: 0;
+	padding: 0.26ex 10px;
+}
+
+.headerTitle {
+    color: white;
+	font-size: 200%;
+	margin: 0;
+	padding: 0;
+}
+
+.headerSubTitle {
+	font-size: 151%;
+	font-weight: normal;
+	font-style: italic;
+	margin: 0 0 1ex 0;
+	padding: 0;
+}
+
+legend {
+	color: #5BA532;
+	font-size: 1.4em;
+}
+
+fieldset {
+	margin: 1em 0;
+	padding: 1.2em;
+	padding-top: 0.4em;
+	background: #FFFFFF;
+	border: 1px solid #D8D2C3
+}
+
+form label {
+	color: #444;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.flash_notice {
+	color: #333;  
+	background: #efe;
+	border: solid 1px #bd7;  
+}
+
+.flash_notice .message {
+	padding: 0 0 0 25px;
+}
+
+.flash_error {
+    font-weight: bold;
+	color: #c30404;
+	/*background: #ff0000;
+	border: 3px solid #c30404; */
+}
+
+.flash_error .message {
+	padding: 0 0 0 25px;
+}
+
+.modcaption {
+	background-color:#CCFFFF;
+	border:1px solid #F7CAC9;
+	color:#333333;
+	font-family:verdana,arial,sans-serif;
+	font-size:11px;
+	font-weight:normal;
+	line-height:100%;
+	margin-top:2px;
+	padding:5px;
+}
+
+.caption { 
+	font-size:10px;
+}
+
+/* Photo gallery styling */ 
+#photos ul { list-style: none; } 
+#photos li { display: inline; } 
+#photos li a img { 
+	margin: 10px; 
+	padding: 5px; 
+} 
+#photo { 
+	margin-bottom: 20px; 
+	padding: 5px; 
+}
+
+tr.odd { background-color: #CCCCCC; }
+tr.even { background-color: #FFFFFF; }
+
+/* Data table */
+
+table.data {
+	width: 100%;
+	border-collapse: collapse;
+}
+table.data th {
+	background: #999;
+	text-align: left;
+	padding: 4px;
+	white-space: nowrap;
+}
+table.data tr.gray {
+	background: #eee;
+}
+table.data td {
+	border-bottom: 1px solid #ddd;
+	padding: 4px;
+	vertical-align: top;
+}
+
+table.question td{ font-size: 8.2pt }
+
+table.data tr.gray td {
+	color: #aaa;
+}
+
+table tr.long-header th, table td.side-header{
+	background: #eee;
+	font-family:verdana,sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	white-space: normal;
+}
+
+select {
+	width: 60px;
+}
+.date-selector select{
+	width: 90px;
+}
+
+div.pagination {
+	padding: 3px;
+	margin: 3px;
+}
+
+div.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #AAAADD;
+
+	text-decoration: none; /* no underline */
+	color: #000099;
+}
+div.pagination a:hover, div.pagination a:active {
+	border: 1px solid #000099;
+
+	color: #000;
+}
+div.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #000099;
+
+	font-weight: bold;
+	background-color: #000099;
+	color: #FFF;
+}
+div.pagination span.disabled {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #EEE;
+
+	color: #DDD;
+}

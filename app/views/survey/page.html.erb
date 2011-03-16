@@ -1,0 +1,55 @@
+<p>For each practice listed below, in the <strong>CURRENT</strong> column, indicate the degree to which you see your family using that practice now. 0 indicates “our family does not do this at all” and 4 indicates “our family does this as a regular practice.”   The button <strong>DK</strong> indicates that you <strong>Don’t Know</strong>.</p>
+<p>In the <strong>FUTURE</strong> column, indicate how important you consider that practice will be for your family in the near future. 0 indicates “this would not be important to our family at all” and 4 indicates “this would be very important for our family in the future.”  The button <strong>DK</strong> indicates that you <strong>Don’t Know</strong>.</p>
+<p>When you have entered responses for all the practices on this page, you can click the button to continue on the next page.</p>
+<strong>Pages <%= @page_num %> of <%= APP_CONFIG["number_of_pages"] %></strong>
+<div id="survey-page">
+  <% form_for :survey_answer, @survey_answer, :url => { :action => :page, :survey_page_num => @page_num } do |f| %>
+
+    <table border="1px">
+      <tr>
+        <th class="survey-question">Practice</th>
+        <th class="survey-response-column">Current</th>
+        <th class="survey-response-column">Future</th>
+      </tr>
+      <% @survey_questions.each do |survey_question| %>
+        <tr>
+        <td class="survey-question">
+          <% if @empty && (@survey_answer["#{survey_question.short_name}_a"].blank? || @survey_answer["#{survey_question.short_name}_b"].blank?) %>
+            <span class="required">*</span>
+          <% end %>
+          <%= survey_question.question %>
+        </td>
+        <td class="survey-response-column">
+          <% attribute_a  = "#{survey_question.short_name}_a" %>
+          <div class="survey-answer-set">
+            <%= f.radio_button(attribute_a.to_sym, 0.0) %>0
+            <%= f.radio_button(attribute_a.to_sym, 1.0) %>1
+            <%= f.radio_button(attribute_a.to_sym, 2.0) %>2
+            <%= f.radio_button(attribute_a.to_sym, 3.0) %>3
+            <%= f.radio_button(attribute_a.to_sym, 4.0) %>4
+            <%= f.radio_button(attribute_a.to_sym, 0.0) %>DK
+          </div>
+          <%# generate_question_response("#{survey_question.short_name}_a", @survey_answer["#{survey_question.short_name}_a"]) %>
+          <%# f.select("#{survey_question.short_name}_a", options_for_survey_response, { :include_blank => true }) %>
+        </td>
+        <td class="survey-response-column">
+          <% attribute_b = "#{survey_question.short_name}_b" %>
+          <div class="survey-answer-set">
+            <%= f.radio_button(attribute_b.to_sym, 0.0) %>0
+            <%= f.radio_button(attribute_b.to_sym, 1.0) %>1
+            <%= f.radio_button(attribute_b.to_sym, 2.0) %>2
+            <%= f.radio_button(attribute_b.to_sym, 3.0) %>3
+            <%= f.radio_button(attribute_b.to_sym, 4.0) %>4
+            <%= f.radio_button(attribute_b.to_sym, 0.0) %>DK
+          </div>
+          <% #generate_question_response("#{survey_question.short_name}_b", @survey_answer["#{survey_question.short_name}_b"]) %>
+          <%# f.select("#{survey_question.short_name}_b", options_for_survey_response, { :include_blank => true }) %>
+        </td>
+        </tr>
+      <% end %>
+    </table>
+    <p>
+      <%= submit_tag "Continue" %>
+    </p>
+  <% end %>
+</div>

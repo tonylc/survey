@@ -1,0 +1,38 @@
+<h1>Editing <%= h @family.business_name %></h1>
+
+<% form_for(@family) do |f| %>
+  <%= f.error_messages %>
+
+    <p><label for="business_name">Business Name:</label><br/>
+    <%= f.text_field :business_name %> <br/>
+
+    <p><label for="mailing_address">Mailing Address:</label><br/>
+    <%= f.text_field :mailing_address, :size => 60, :maxlength => 60 %> <br/>
+
+    <div class="user-field">
+      <label for="city">City:</label><br/>
+      <%= f.text_field :city %> <br/>
+    </div>
+
+    <div class="user-field">
+      <label for="state">State:</label><br/>
+      <%= f.text_field :state, :size => 2, :maxlength => 2 %> <br/>
+    </div>
+
+    <p><label for="zip_code">Zip Code:</label><br/>
+    <%= f.text_field :zip_code, :size => 5, :maxlength => 5 %> <br/>
+
+    <p><label for="phone_number">Phone Number:</label><br/>
+    <%= f.text_field :phone_number %> <br/>
+
+    <p>Number of Users: <%= h @family.num_users %> <br/>
+
+    <p><label for="num_generations">Number of Generations:</label><br/>
+    <%= f.text_field :num_generations %> <br/>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel', @family %>

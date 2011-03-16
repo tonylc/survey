@@ -1,0 +1,38 @@
+<fieldset>
+<legend>Family Business <%= h @family.business_name %></legend>
+
+    <p>Business Name: <%= h @family.business_name %> </p>
+
+    <p>Mailing Address: <%= h @family.mailing_address %> </p>
+
+    <p>City: <%= h @family.city %> </p>
+
+    <p>State: <%= h @family.state %> </p>
+
+    <p>Zip Code: <%= h @family.zip_code %> </p>
+
+    <p>Phone Number: <%= h @family.phone_number %> </p>
+
+    <p>Number of Users: <%= h @family.num_users %> </p>
+
+    <p>Number of Generations: <%= h @family.num_generations %> </p>
+
+</fieldset>
+<%= link_to 'Edit', edit_family_path(@family) %>
+
+<% @family.users.each do |user| %>
+<fieldset>
+<legend><%= h user.full_name %></legend>
+
+    <p>Name: <%= h user.full_name %></p>
+
+    <p>Email Address: <%= h user.email %></p>
+
+    <p>Status of Survey: <%= h user.survey_status %></p>
+<% if !user.active? %>
+	<p>Activation Code: <%= h user.activation_code %></p>
+	<% session[:return_to] = url_for(:controller => :families, :action => :show, :id => @family.id) %>
+	<%= button_to "Email Registration Info", :controller => :users, :action => :email_registration, :id => @family.id, :user_id => user.id %>
+<% end %>
+</fieldset>
+<% end %>

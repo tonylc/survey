@@ -1,0 +1,8 @@
+<% if check_answer %>
+
+  <% current_method = "#{attribute}_current_score" %>
+  <% future_method = "#{attribute}_future_score" %>
+  <td><%= results_part_2_view(survey_answer.method(current_method).call) %></td>
+  <td><%= results_part_2_view(survey_answer.method(future_method).call) %></td>
+
+<% end %>

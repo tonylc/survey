@@ -1,0 +1,34 @@
+<strong>Please fill out your login and password to finish registering your account.</strong>
+<fieldset>
+<legend>Register Your Account</legend>
+
+<% form_for :user, :activation_code => @activation_code do |f| -%>
+<%= error_messages_for :user %>
+
+    <div class="user-field">
+      <label for="last_name">Last Name:</label><br/>
+      <%= f.text_field :last_name %>
+    </div>
+
+    <p><label for="first_name">First Name:</label><br/>
+    <%= f.text_field :first_name %> <br/>
+
+	<p><label for="login">Login:</label><br/>
+	<%= f.text_field :login %> <br/>
+
+	<p><label for="email">Email:</label><br/>
+	<%= f.text_field :email %><br/>
+	<cite>A valid email is required for an active account.</cite>
+
+	<p><label for="password">Password:</label><br/>
+	<%= f.password_field :password %><br/>
+	<cite>Enter a password that is between 4 and 40 characters in length.</cite>
+
+	<p><label for="password_confirmation">Confirm Password:</label><br/>
+	<%= f.password_field :password_confirmation %><br/>
+	<cite>Enter the same password as above.</cite>
+
+  <p><%= submit_tag 'Sign Up' %></p>
+<% end -%>
+
+</fieldset>

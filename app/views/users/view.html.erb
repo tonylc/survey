@@ -1,0 +1,15 @@
+<fieldset>
+<legend><%= h @user.first_name %>'s Profile</legend>
+
+    <p><b>Last Name:</b> <%= h @user.last_name %> <br/>
+
+    <p><b>First Name:</b> <%= h @user.first_name %> <br/>
+
+    <p><b>Login:</b> <%= h @user.login %> <br/>
+
+    <p><b>Email:</b> <%= h @user.email %> <br/>
+
+    <p><b>Password:</b> (not shown) <br/>
+
+</fieldset>
+<%= link_to "Edit Profile", :action => :edit, :id => @user %>

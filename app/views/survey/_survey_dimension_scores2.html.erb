@@ -1,0 +1,43 @@
+<%
+	score_type ||= :current
+	dimension_title ||= ""
+	dimension_title = set_dimension_title(dimension_title, score_type)
+	family_answers ||= []
+	family_answers_count = family_answers.size
+	attributes ||= []
+%>
+
+<div class="survey_dimension_scores">
+<table border="1">
+	<tr>
+	  <td class="survey-part-title" align="center" colspan="5"><%= dimension_title %></td>
+	</tr>
+	<tr>
+	  <td class="survey-header" style="width:50%; max-width:350px;">Major Practice</td>
+		<% attributes.each_index do |index| %>
+			<td class="survey-header header-width" align="center" ><%= index + 1 %></td>
+		<% end %>
+	</tr>
+	<% family_answers.each_with_index do |sa, index| %>
+		<tr>
+			<% if index == 0 %>
+			<td>You</td>
+			<% else %>
+			<td><%= "Family Member #{index+1}"%></td>
+			<% end %>
+			
+			<% attributes.each_with_index do |attribute_name, index| %>
+				<%
+					score_method = "#{attribute_name}_#{score_type}_score"
+					if attribute_name == :shared_agreements
+						num_questions = 4
+					else
+						num_questions = 3
+					end
+				%>
+				<td align="center"><%= results_part_2_view(sa.method(score_method).call / num_questions) %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
+</div>

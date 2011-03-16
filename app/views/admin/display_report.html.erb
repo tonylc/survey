@@ -1,0 +1,22 @@
+<h1>Display Report</h1>
+
+<table cellpadding="5" cellspacing="0" border="1" id="doc">
+  <tr><td>Number of Families</td><td><%= @num_families %></td></tr>
+  <tr><td>Number of Users</td><td><%= @num_users %></td></tr>
+  <tr><td>Surveys Unopened</td><td><%= @num_unopened %></td></tr>
+  <tr><td>Surveys Incomplete</td><td><%= @num_incomplete %></td></tr>
+  <tr><td>Surveys Complete</td><td><%= @num_complete %></td></tr>
+</table>
+<br/>
+<br/>
+<% if @download_to_excel %>
+<table cellpadding="5" cellspacing="0" border="1" id="doc">
+    <%= survey_answer_attributes_for_excel(true) %>
+
+    <% @survey_answers.each do |survey_answer| %>
+      <%= survey_answer_attributes_for_excel(false, survey_answer) %>
+    <% end %>
+</table>
+<% else %>
+  <%= link_to link_to "Download to Excel", :controller => :admin, :action => :export_to_excel %>
+<% end %>

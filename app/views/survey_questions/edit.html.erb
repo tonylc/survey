@@ -1,0 +1,9 @@
+<% form_for :survey_question, @survey_question, :url => {:action => :update, :id => @survey_question.id } do |form| %>
+  <p><label for="question" class="block">Question</label><br/>
+  <%= form.text_field :question, :size => 45 %></p>
+
+  <p><label for="page_number" class="block">Page Number</label><br/>
+  <%= form.text_field :page_number, :size => 1, :maxlength => 1 %></p>
+  <%= submit_tag 'Update' %>
+
+<% end %>

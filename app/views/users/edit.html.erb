@@ -1,0 +1,34 @@
+<fieldset id="user_edit">
+<legend>Edit <%= h(@user.first_name) %>'s Profile</legend>
+<%= error_messages_for :user %>
+
+  <% form_for :user, :url => { :action => :edit } do |f| -%>
+
+    <div class="user-field">
+      <label for="last_name">Last Name:</label><br/>
+      <%= f.text_field :last_name %>
+    </div>
+
+    <p><label for="first_name">First Name:</label><br/>
+    <%= f.text_field h(:first_name) %> <br/>
+
+    <p>Login: <%= h(@user.login) %> <br/>
+
+    <p><label for="email">Email:</label><br/>
+    <%= f.text_field :email %><br/>
+    <cite>A valid email is required for an active account.</cite>
+
+    <p><label for="password">Password:</label><br/>
+    <%= f.password_field :password %><br/>
+    <cite>Enter the password that is between 4 and 40 characters in length.</cite>
+
+    <p><label for="password_confirmation">Confirm Password:</label><br/>
+    <%= f.password_field :password_confirmation %><br/>
+    <cite>Enter the same password as above.</cite>
+
+  <p><%= submit_tag 'Update' %></p>
+<% end %>
+
+</fieldset>
+
+<%= link_to 'Cancel', :action => :view, :id => @user.id %>

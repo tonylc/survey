@@ -1,0 +1,23 @@
+<fieldset>
+<legend>Add Member</legend>
+<%= error_messages_for :user %>
+
+ <% form_for :user, :url => users_path  do |f| -%>
+   
+    <div class="user-field">
+      <label for="last_name">Last Name:</label><br/>
+      <%= f.text_field :last_name %>
+    </div>
+
+    <p><label for="first_name">First Name:</label><br/>
+    <%= f.text_field :first_name %> <br/>
+
+	<p><label for="email">Email:</label><br/>
+	<%= f.text_field :email %><br/>
+	<cite>A valid email is required for an active account.</cite>
+
+
+  <p><%= submit_tag 'Add' %></p>
+<% end -%>
+
+</fieldset>

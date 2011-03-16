@@ -1,0 +1,87 @@
+<% content_for :head do %>
+<style>
+	#page-wrapper ul { list-style: upper-roman;}
+	table th,
+	table td { text-align: left; }
+	.score-cell { text-align: right; }
+</style>
+<% end %>
+
+<div id="page-wrapper">
+<h3>Family Strengths</h3>
+
+<p>The table below indicates those practice areas that, on average, from highest to lowest,  family members including you collectively perceive your family does with at least some frequency as a regular practice.  Given that the ratings are from "0", "our family does not do this at all" to "4", "our family does this as a regular practice", a family strength is defined as a practice area that on average receives a current assessment rating of "3.0 and above". "DK"  was always an option which indicated "you don’t know if the practice is being done by your family."  When this was the case, the rating was not included. The four dimensions referred to by Roman Numeral in the tables are:</p>
+
+<ul>
+	<li>Family Legacy and Connection</li>
+	<li>Governance Structures and Processes</li>
+	<li>Financial Accountability and Management</li>
+	<li>Leadership and Human Capital Development</li>
+</ul>
+
+<% sorted_answers = SurveyAnswerSortableByScore.sort_answer_by_current(@family_survey) %>
+<table border="1">
+    <tr>
+		<th>Family Strengths</th>
+		<th>Average Family Rating</th>
+	</tr>
+	<% sorted_answers.each_with_index do |current_score, index| %>
+	<tr>
+		<td><%= "#{APP_CONFIG[current_score.attribute.to_s]} (#{SurveyAnswer.attribute_dimension(current_score.attribute)})" %></td>
+		<td class="score-cell"><%= number_with_precision(current_score.score, 1) %></td>
+	</tr>
+	<% end %>
+</table>
+<br/>
+<h3>Areas of Importance for Further Development</h3>
+<p>You were asked to indicate if you considered each specific practice important for your family in the near future defined as the next five years.  The first table below answers this question by showing how important all family members, on average, believe specific Major Practice Areas will be to the family in the future. Again, the ratings represent a collective perception average based on all family member ratings, ranging from "0" "this would not be important to our family at all" to "4" this would be very important for our family in the future." An average rating of 3.0 across all family members is used as the cutoff for inclusion in the "Top Ten". Given the 0-4 rating scale, a rating of 3.0 indicates a perception that the practice is of some degree of importance.</p>
+
+<% sorted_answers = SurveyAnswerSortableByScore.sort_answer_by_future(@family_survey) %>
+<table border="1">
+    <tr>
+		<th>Top Ten Important Areas to Develop</th>
+		<th>Average Family Rating</th>
+	</tr>
+	<% sorted_answers.each_with_index do |current_score, index| %>
+	<tr>
+		<td><%= "#{APP_CONFIG[current_score.attribute.to_s]} (#{SurveyAnswer.attribute_dimension(current_score.attribute)})" %></td>
+		<td class="score-cell"><%= number_with_precision(current_score.score, 1) %></td>
+	</tr>
+	<% end %>
+</table>
+
+<p>This last table constitutes the beginning of a roadmap for you and your family.  The table is sorted from the highest gap to the lowest and includes only the ten highest gaps between you and your family’s current assessment of what your current family practices and what you together believe will be important in the future.</p>
+<p>Each one of the practices identified could become the basis for a family strategic initiative over time.  Using the idea of a five year plan, your family’s governing body may elect to form a task force to fully dive into what it would take for your family to remove the gap between your current practices and what you believe will be needed in the future.  Because the table is organized from highest to lowest, you could also establish your priorities in this way, potentially beginning with one or two top practice areas at a time rather than undertake everything all at once.  Transition is a process as is sustainability.</p>
+
+<p>For instance, the practice area, "Oversight of family financial management" (one of three practice areas of the dimension, Financial Accountability and Management) is defined by three practices:</p>
+<ul>
+	<li>Multi-year business plans for both operating and capital funds are shared with family shareholders.</li>
+	<li>Regular performance evaluations of family managers are conducted based on clear criteria.</li>
+	<li>We have oversight groups that provide regular reports to family on each family enterprise or asset grouping.</li>
+</ul>
+
+<p>Each one of the practices above could become an objective.  In order to accomplish each objective, the education committee or other designated representative body within your family could create a program to educate each generation through a combination of family retreat activities, external education programs, invited speakers, coaches and selected readings.  An additional suggestion would be to find ways within your family structures and processes to provide "hands on" learning.</p>
+
+<% sorted_answers = SurveyAnswerSortableGap.sort_answer_by_gap(@family_survey) %>
+<table border="1">
+	<tr>
+		<th colspan="4">Roadmap To Sustainability</th>
+	</tr>
+	<tr>
+		<th>Practice</th>
+		<th>Low Practice</th>
+		<th>Importance to Develop</th>
+		<th>Gap</th>
+	</tr>
+	<% sorted_answers.each_with_index do |score, index| %>
+	<tr>
+		<td><%= "#{APP_CONFIG[score.attribute.to_s]} (#{SurveyAnswer.attribute_dimension(score.attribute)})" %></td>
+		<td><%= score.current_score %></td>
+		<td><%= score.future_score %></td>
+		<td class="score-cell"><%= number_with_precision(score.gap_score, 1) %></td>
+	</tr>
+	<% end %>
+</table>
+
+<p>We hope you have found this Sustainability Index helpful to your family’s  future strategic planning.  We are always interested in improving the value of the index and welcome your comments and feedback.  If we can be of assistance in directing you to appropriate resources or would like to find out about how we can assist you in planning and implementation, we can be reached <%= link_to "here", "http://relative-solutions.com/ourcompany/contact" %>.</p>
+</div>

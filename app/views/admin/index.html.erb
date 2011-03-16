@@ -1,0 +1,7 @@
+<h1>Manage Administrators</h1>
+
+<% @admins.each do |admin| %>
+  <%= h admin.login %> <%= link_to "(edit)", :action => :edit, :id => admin.id unless current_user.id == admin.id %> <% if current_user.id != admin.id %> (Re-send email) <% end %> <br>
+<% end %>
+<br/>
+<%= link_to "Add Administrator", :action => :add_admin %>

@@ -1,0 +1,39 @@
+## YAML Template.
+
+number_of_pages: 4
+enforce_page_order: true
+check_answer: false
+
+#p1
+direction: Formulate a clear and compelling family direction
+connection: Appreciate and enjoy extended family connection
+communication: Develop paths for family communication
+community: Develop family’s community and social mission
+
+#p2
+achieve_purpose: Develop structures that enable the family to achieve its purpose
+shared_agreements: Formulate explicit and shared agreements for family assets
+exit_options: Define clear liquidity and exit options
+
+#p3
+financial_accountability: Maintain financial accountability
+financial_management: Oversight of family financial management
+future_generations: Provide for continuation of wealth in future generations
+
+#p4
+leadership_transition: Plan for leadership transition
+next_gen_leader: Develop next generation leadership
+financial_stewardship: Teach financial stewardship
+personal_fulfillment: Empower individuals to seek personal fulfillment
+
+p1:
+  title: Family Legacy & Connection
+
+p2:
+  title: Governance Structures & Processes
+
+p3:
+  title: Financial Accountability and Management
+
+p4:
+  title: Leadership & Human Capital Development

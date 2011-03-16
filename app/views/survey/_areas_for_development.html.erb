@@ -1,0 +1,37 @@
+<% check_answer = APP_CONFIG["check_answer"] %>
+<div id="area-development">
+  <table border="1">
+    <tr>
+      <% if check_answer %>
+
+      <td class="survey-header">Your Perceptions</td>
+      <td colspan="2"></td>
+	  <% if should_show_family %>
+      <td class="survey-header">Family Perceptions</td>
+      <td colspan="2"></td>
+	  <% end %>
+	
+      <% else %>
+
+      <td class="survey-header">Your Perceptions</td>
+	  <% if should_show_family %>
+      <td class="survey-header">Family Perceptions</td>
+	  <% end %>
+      <% end %>
+    </tr>
+
+    <% attributes.each_with_index do |attribute, index| %>
+      <tr>
+        <td><%= APP_CONFIG["#{attribute.to_s}"] %></td>
+
+        <%= render :partial => "check_answer", :locals => {:attribute => attribute, :survey_answer => survey_answer, :check_answer => check_answer} %>
+		<% if should_show_family %>
+        <% family_attribute = family_attributes[index].to_s %>
+        <td><%= APP_CONFIG[family_attribute] %></td>
+
+        <%= render :partial => "check_answer", :locals => {:attribute => family_attribute, :survey_answer => family_answer, :check_answer => check_answer} %>
+		<% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

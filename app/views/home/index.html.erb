@@ -1,0 +1,29 @@
+<div id="home-intro">
+  <p>The <strong>Enterprising Family Sustainability Index</strong> is for families who share assets - which can include a family business, family office, foundation, real estate or other shared investments. We call these families "enterprising families". The Index looks at practices that we have found in our work that help sustain your family enterprise over generations, as both an economic and family unit.</p>
+
+	<h3>About the Index.</h3>
+	<p>The Index was developed from our work with families. It helps you look at the degree to which your family practices which we have found help develop sustain the fabric of the family, and its various enterprises, over generations.  It gives you a measure of how sustainable your family is over time—its ability to weather the challenges of being both a family and an economic unit.</p>
+
+	<p>While the Index is currently in a pilot stage, over time we will be able to benchmark your family’s responses with those of other families who complete the Index.</p>
+
+  <h3>Who should complete the index?</h3>
+  <p>While one individual can take the index on their own, it is best used by several members of a family. After each family member completes the Index, the whole family can compare their perceptions, to begin a discussion of the similiarities and differences.</p>
+
+  <h3>You can sign in to take the inventory below.</h3>
+  <p>If several members of a family are taking it, one family member can register as the <strong>Family Registrar</strong>, and begin the process for several family members to complete it.  When all the family members who care to respond have completed the index, the family can receive a composite score, and each individual can compare their score with the family as a whole. </p>
+</div>
+
+<fieldset>
+<legend>Sign In</legend>
+
+<% form_tag session_path do -%>
+<p><label for="login">Login</label><br/>
+<%= text_field_tag 'login' %></p>
+
+<p><label for="password">Password</label><br/>
+<%= password_field_tag 'password' %></p>
+
+<p><%= submit_tag 'Log in' %><br/><%= link_to "Forgot Password?", forgot_password_url   %></p>
+<% end -%>
+
+</fieldset>

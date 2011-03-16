@@ -1,0 +1,39 @@
+<%
+	score_type ||= :current
+	dimension_title ||= ""
+	dimension_title = set_dimension_title(dimension_title, score_type)
+	family_answers ||= []
+	family_answers_count = family_answers.size
+	attributes ||= []
+%>
+<div class="survey_dimension_scores">
+<table border="1">
+	<tr>
+	  <td class="survey-part-title" align="center" colspan="5"><%= dimension_title %></td>
+	</tr>
+	<tr>
+	  <td class="survey-header" style="width:50%; max-width:350px;">Major Practice</td>
+	  <td class="survey-header header-width" align="center" >You</td>
+	  <% (2..family_answers_count).each do |num| %>
+		<% num = num - 1 %>
+	  <td class="survey-header header-width" align="center" ><%= "FM#{num}" %></td>
+	  <% end %>
+	</tr>
+	<% attributes.each do |attribute_name| %>
+		<%
+			score_method = "#{attribute_name}_#{score_type}_score"
+			if attribute_name == :shared_agreements
+				num_questions = 4
+			else
+				num_questions = 3
+			end
+		%>
+		<tr>
+			<td><%= APP_CONFIG[attribute_name.to_s] %></td>
+			<% (1..family_answers_count).each do |num| %>
+		  <td align="center"><%= results_part_2_view(family_answers[num-1].method(score_method).call / num_questions) %></td>
+		  <% end %>
+		</tr>
+	<% end %>
+</table>
+</div>
